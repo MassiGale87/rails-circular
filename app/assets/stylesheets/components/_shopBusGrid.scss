@@ -1,0 +1,81 @@
+.bus-container {
+  display: grid;
+  grid-template-columns: 773px auto 90px;
+  grid-template-rows:  526px;
+  grid-template-areas:
+    "pic info . ";
+  column-gap: 80px;
+  margin-top: 40px;
+  margin-bottom: 20px;
+
+}
+
+.main-item {
+  grid-area: pic;
+}
+
+.main-item img {
+  width: 773px;
+  height: 526px;
+  margin-left: 25px;
+}
+.main-item .cl-img {
+  width: 773px;
+  height: 526px;
+  margin-left: 25px;
+}
+
+
+.space-holder-line {
+  width: 700px;
+  height: 50px;
+  border-top: 0.5px solid black;
+}
+
+
+.bus-content-container {
+  grid-area: info;
+  display: flex;
+  flex-direction: column;
+  align-items: baseline;
+  width: 100%;
+}
+
+.bus-infos {
+  align-self: flex-start;
+  width: 100%;
+}
+
+.bus-infos h1 {
+  padding-top: 8px;
+  font-family: Karla;
+  font-weight: lighter;
+  font-size: 28px;
+  line-height: 33px;
+}
+
+.bus-infos p {
+  font-family: Karla;
+  font-weight: lighter;
+  font-size: 14px;
+  line-height: 16px;
+  width: 350px;
+}
+
+
+ .bus-offers {
+  display: grid;
+  grid-template-columns: 167px 167px;
+  grid-template-rows:  42px 42px;
+  grid-template-areas:
+    "ofr ofr"
+    "ofr ofr";
+  column-gap: 23px;
+  row-gap: 23px;
+  margin-bottom: 23px;
+}
+
+.bus-offers .offers {
+  grid-area: ofr;
+  text-align: center;
+}

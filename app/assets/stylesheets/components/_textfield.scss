@@ -1,0 +1,71 @@
+.txtfld-ghost-sm {
+  color: #4A4A4A;
+  border: 1px solid #4A4A4A;
+  padding: 8px 24px;
+  border-radius: 50px;
+  font-weight: lighter;
+  opacity: 0.6;
+  transition: opacity 0.3s ease;
+  height: 30px;
+  width: 150px;
+  grid-area: txt;
+  outline: none;
+}
+
+.txtfld-ghost:hover {
+  opacity: 1;
+}
+
+.txtfld-ghost {
+  color: #4A4A4A;
+  border: 1px solid #4A4A4A;
+  padding: 8px 24px;
+  border-radius: 4px;
+  font-weight: lighter;
+  opacity: 0.6;
+  transition: opacity 0.3s ease;
+  height: 30px;
+  width: 200px;
+  grid-area: txt;
+  margin-bottom: 8px;
+  outline: none;
+}
+
+
+.txtfarea-ghost {
+  color: #4A4A4A;
+  border: 1px solid #4A4A4A;
+  padding: 8px 24px;
+  border-radius: 4px;
+  font-weight: lighter;
+  opacity: 0.6;
+  transition: opacity 0.3s ease;
+  height: 100px;
+  width: 360px;
+  grid-area: txt;
+  margin-bottom: 8px;
+    outline: none;
+}
+
+.checkbox-g {
+  height: 10px;
+  width: 10px;
+  border: 1px solid #94B0B9;
+  background-color: red;
+  color: red !important;
+}
+
+.txtfld-trans {
+  color: #4A4A4A;
+  border: 2px solid red !important;
+  padding: 8px 24px;
+  border-radius: 10px;
+  font-weight: lighter;
+  opacity: 0.6;
+  transition: opacity 0.3s ease;
+  height: 30px;
+  width: 200px;
+
+  margin-bottom: 8px;
+  outline: none;
+}

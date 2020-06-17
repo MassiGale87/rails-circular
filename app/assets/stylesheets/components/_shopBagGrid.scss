@@ -1,0 +1,179 @@
+.shop-bag-container{
+  display: grid;
+  grid-template-columns: auto 490px;
+  grid-template-rows:  900px;
+  grid-template-areas:
+    "items bag";
+  margin-top: 40px;
+  column-gap: 24px;
+
+}
+
+
+.pay-title {
+  grid-area: bg-ttl;
+  padding-bottom: 3px;
+  border-bottom: 0.7px solid #999894;
+  font-size: 15px;
+  align-self: start;
+  justify-self: start;
+  width: 100%;
+  color: #403f3d;
+}
+
+.pay-item1 {
+  grid-area: bg-item1;
+  font-size: 14px;
+  justify-self: start;
+  margin-top: 15px;
+  margin-bottom: 10px;
+  width: 100%;
+  color: #403f3d;
+}
+
+.pay-item2 {
+  grid-area: bg-item2;
+  border-bottom: 0.7px solid #999894;
+  font-size: 14px;
+  justify-self: start;
+  width: 100%;
+  margin-top: 15px;
+  padding-bottom: 15px;
+}
+
+.pay-item3 {
+  grid-area: bg-item3;
+  border-bottom: 0.7px solid #999894;
+  font-size: 14px;
+  justify-self: start;
+  color: #403f3d;
+  width: 100%;
+}
+
+.gift-check {
+  grid-area: gift-link;
+  font-size: 14px;
+  justify-self: start;
+  color: #403f3d;
+  padding-top: 15px;
+  padding-bottom: 15px;
+    border-bottom: 0.7px solid #999894;
+}
+
+.gift-textbox{
+  grid-area: gift-msg;
+  font-size: 14px;
+  align-self: center;
+  justify-self: center;
+  color: #403f3d;
+  margin-top: 18px;
+}
+
+.pay-btn{
+  grid-area: pay-btn;
+  align-self: center;
+
+  padding-top: 20px;
+  margin-top: 20px;
+}
+
+.pay-terms {
+  grid-area: terms;
+  font-size: 12px;
+  align-self: start;
+  color: #403f3d;
+  margin-top: 18px;
+  margin-right: 24px;
+  line-height: 1.6;
+  text-align: justify;
+}
+
+
+.shop-ttl{
+  grid-area: shop-ttl;
+  padding-bottom: 3px;
+  border-bottom: 0.7px solid #999894;
+  font-size: 15px;
+  align-self: start;
+  justify-self: start;
+  width: 95%;
+  color: #403f3d;
+  margin-left: 8px;
+}
+
+.shop-list-container{
+  // grid-area: shop-itm;
+  padding-bottom: 18px;
+  border-bottom: 0.7px solid #999894;
+  font-size: 15px;
+  align-self: start;
+  justify-self: start;
+  width: 95%;
+  color: #403f3d;
+  margin-top: 20px;
+  margin-left: 8px;
+  display: grid;
+  grid-template-columns: 85px 715px 50px;
+  grid-template-rows:  150px;
+  grid-auto-flow: row;
+  grid-template-areas:
+  "pic descrption act";
+  row-gap: 18px;
+  column-gap: 8px;
+
+}
+
+.item-pic {
+  grid-area: pic;
+  justify-self: center;
+    align-self: center;
+    margin-left: 24px;
+  img {
+    width: 100px;
+    height: 150px;
+  }
+
+    .cl-img {
+    width: 100px;
+    height: 150px;
+  }
+}
+
+.item-descrption {
+  margin-left: 32px;
+  grid-area: descrption;
+  line-height: 25px;
+  img {
+    width: 20px;
+    height: 20px;
+  }
+
+  .cl-img {
+    width: 20px;
+    height: 20px;
+  }
+
+  .empty-msg {
+    position: absolute;
+    left: 400px;
+    top: 260px;
+  }
+}
+
+.item-action {
+  grid-area: act;
+  justify-self: end;
+    img {
+    width: 30px;
+    height: 30px;
+  }
+
+  .cl-img {
+    width: 30px;
+    height: 30px;
+  }
+}
+
+.strike {
+  text-decoration: line-through;
+}

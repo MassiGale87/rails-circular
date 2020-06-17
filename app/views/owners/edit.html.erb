@@ -1,2 +1,37 @@
-<h1>Owners#edit</h1>
-<p>Find me in app/views/owners/edit.html.erb</p>
+<div class="page-container">
+  <div class="sidebar">
+    <div class="item-box-up">
+      <div class="up-spc">
+        <%= link_to "Your Profile", edit_user_registration_path, class: "link-to-txt" %>
+      </div>
+      <div class="up-spc">
+        <%= link_to "Transactions History", orders_path, class: "link-to-txt" %>
+      </div>
+    </div>
+  </div>
+  <div class="page-body-flat">
+    <%= simple_form_for @owner, html: { method: :put }, remote: true, class: "txtfld-trans" do |f| %>
+      <div class="row">
+        <div class= "col-12 col-lg-6">
+          <%= f.input :name, as: :string, placeholder: 'Name of Your Rent', error: 'Name is mandatory, please specify one', required: true, input_html: {class: "txtfield"} %>
+          <%= f.input :address,as: :string, placeholder: 'Address of Your Rent', required: true, input_html: {class: "txtfield"} %>
+          <%= f.input :category_id, collection: Category.all, input_html: {class: "txtfield"}, label_method:
+                      lambda {
+                       |category| "#{category.category_name}"
+                      }, required: true %>
+          <%= f.input :description, as: :text, placeholder: 'Write a catchy description here...', input_html: { maxlength: 200 }, required: true, input_html: {class: "txtfield"}  %>
+        </div>
+        <div class= "col-12 col-lg-6">
+          <%= f.input :instagram,as: :string, input_html: {class: "txtfield"}, placeholder: 'Instagram Profile Link', required: true %>
+          <%= f.input :facebook,as: :string, input_html: {class: "txtfield"}, placeholder: 'Your Facebook url', required: true %>
+          <div class="d-flex mt-4">
+            <i class="far fa-image" style="padding-right: 8px"></i><%= f.input :photo, input_html: { class: 'd-none' }, label_html: { class: 'upload-photo'}, label: 'Upload a photo' %>
+          </div>
+        </div>
+      </div>
+      <div class="form-actions">
+        <%= f.button :submit, "Update", class: "button-primary" %>
+      </div>
+    <% end %>
+  </div>
+</div>

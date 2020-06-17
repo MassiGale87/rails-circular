@@ -1,0 +1,125 @@
+    <%if orderView %>
+      <div class="srch-bar">
+        <%= form_tag orders_path, method: :get do %>
+          <%= text_field_tag :order_query,
+            params[:order_query],
+            class: "txtfld-ghost mt-2",
+            placeholder: "Find an order"
+          %>
+          <%= button_tag :submit, class: "button-secondary-xs ml-2" do %>
+            <img src="<%= asset_path('search.svg') %>" alt="">
+          <%end%>
+        <% end %>
+      </div>
+    <%end%>
+    <%if !orderView%>
+    <div class="srch-bar"></div>
+    <%end%>
+
+    <div class="page-container">
+      <div class="sidebar">
+        <div class="item-box-up">
+          <div class="up-spc">
+            <%= link_to "Your Profile", edit_user_registration_path, class: "link-to-txt" %>
+          </div>
+          <div class="up-spc">
+            <%= link_to "Transactions History", orders_path, class: "link-to-txt" %>
+          </div>
+        <% if !current_user.owner%>
+          <div class="up-spc">
+            <%= link_to "Supported Businesses", owner_helped_path, class: "link-to-txt" %>
+          </div>
+        <%end%>
+        </div>
+    <%if orderView %>
+      <%if current_user.owner %>
+        <div class="item-box-down">
+          <div class="down-ttl">Offer Package:</div>
+          <% current_user.owners[0].owner_offers.each do |owner_offer|%>
+            <div class="down-spc stl">
+            <%= link_to orders_path(offer: owner_offer.id), class: "link-to-txt", method: :get do %>
+              <%=humanized_money_with_symbol(owner_offer.offer_amount)%>$ Credit
+            <%end%>
+          </div>
+          <%end%>
+        </div>
+      <%end%>
+    <%end%>
+      </div>
+    <%if orderView %>
+      <div class="page-body-table">
+        <div class="order-row">
+          <div class="order-cell" style=" font-weight: bold;width: 110px !important;">ORDER NUMBER</div>
+          <div class="order-cell" style="font-weight: bold; width: 110px !important;">ORDER DATE</div>
+          <div class="order-cell" style="font-weight: bold; width: 110px !important;">EXPIRY DATE</div>
+          <div class="order-cell" style="font-weight: bold; width: 90px !important;">TOTAL</div>
+          <div class="order-cell" style="font-weight: bold; width: 150px !important;">PAYMENT STATUS</div>
+          <div class="order-cell" style="font-weight: bold; width: 150px !important;">CONFIRMATION NO.</div>
+          <div class="order-cell" style="font-weight: bold; width: 120px !important;">PACK QUANTITY</div>
+          <div class="order-cell" style="font-weight: bold;">GIFT</div>
+        </div>
+
+            <% orders.each do |order|%>
+            <div class="order-row">
+              <div class="order-cell" style="width: 110px !important; color:#333333;"><%= order.id %></div>
+              <div class="order-cell" style=" width: 110px !important; color:#333333;"><%= order.order_date %></div>
+              <div class="order-cell" style=" width: 110px !important; color:#333333;"><%= order.exp_date %></div>
+              <div class="order-cell" style=" width: 90px !important; color:#333333;"><%= order.total_amount_cents %></div>
+              <div class="order-cell" style=" width: 150px !important; color:#333333;"><%= order.state %></div>
+              <div class="order-cell" style=" width: 150px !important; color:#333333;"><%= order.confirmation_no %></div>
+              <div class="order-cell" style=" width: 120px !important; color:#333333;"><%= order.order_items.count %> </div>
+              <div class="order-cell" style="width: 110px !important; color:#333333;"><% if order.gift %> <i class="fas fa-gift" data-toggle="modal" data-target="#exampleModal"></i> <%end%>
+              </div>
+            </div>
+            <%end%>
+      </div>
+    <%end%>
+        <%if card %>
+      <div class="page-body-card">
+<%quantity=0%>
+<% empl = 0%>
+<%orders = Order.where(user_id: current_user)%>
+  <%if !orders.nil?%>
+  <%orders.each do |order|%>
+    <% order_items = order.order_items %>
+    <%order_items.each do |order_item|%>
+      <% quantity = quantity + order_item.quantity.to_i %>
+      <% empl = empl + order_item.owner_offer.owner.employee_no.to_i %>
+    <%end%>
+  <%end%>
+  <div class="msg-box">
+      <h3>Thank You!</h3>
+      <p>You have rented for <strong><u> <%= quantity %> </u></strong> days</p>
+  </div>
+<%end%>
+
+
+
+
+        <div class="main-container-side-t">
+          <div class="card-container-side-t">
+          <% owners.each do |owner| %>
+          <%= link_to owner_path(owner), class: "link-to-txt" do %>
+              <div class="card-container-item">
+                <div class="card">
+                  <%= cl_image_tag owner.photo.key, quality: :auto, crop: :scale, class:"cl-img" %>
+                  <div class="card-infos">
+                    <div>
+                      <h2><%= owner.name %></h2>
+                      <p class="green">Thanks! Help your Community, Be Circular !</p>
+                    </div>
+                    <div class="discount-bordered">
+                      <div class="discount-bordered-inside">
+                        <img src=<%= asset_path('check.svg')%> >
+                      </div>
+                      </div>
+                  </div>
+                </div>
+              </div>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+    <%end%>
+    </div>
+  </div>

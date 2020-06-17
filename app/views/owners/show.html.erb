@@ -1,2 +1,13 @@
-<h1>Owners#show</h1>
-<p>Find me in app/views/owners/show.html.erb</p>
+<!-- app/views/owners/show.html.erb -->
+<% content_for :meta_title, "#{@owner.name} is on #{DEFAULT_META["meta_product_name"]}" %>
+<% content_for :meta_description, @business.description %>
+<% if @owner.photo.attached?  %>
+  <% content_for :meta_image, cl_image_path(@owner.photo.key) %>
+<% end %>
+
+<%= render "/shared/ownerOffers", owner: @owner %>
+<div class="centerd-btn-layer">
+  <div class="line mt-4"></div>
+</div>
+
+<%= render "/shared/showSeveralBusCard", owners: @owners, text: "Places You Might Like" %>

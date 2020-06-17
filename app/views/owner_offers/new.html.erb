@@ -1,0 +1,37 @@
+<div class="form-submission">
+  <div class=" col-12 col-md-12 col-lg-12">
+    <% if @owner.owner_offers.count <= 3 %>
+      <h4>Add maximum 4 offers and click on REGISTER.</h4>
+        <p>My Offer:</p>
+          <div class="card-form">
+            <%= simple_form_for([@owner, @owner_offer], remote: true, html: {class: 'form-inline d-flex'}) do |owner_offer| %>
+              <div class = "mr-3"> <%= owner_offer.input_field :offer_amount, size: '5', placeholder: '€ Offer Amount', class: "txtfield" %> </div>
+              <div class = "mr-3"> <%= owner_offer.input_field :discount, size: '30', placeholder: 'Discount % ', class: "txtfield" %> </div>
+              <%= owner_offer.submit "Add" , class: "add-btn ml-3"%>
+            <% end %>
+          </div>
+    <% else %>
+      <p>Maximum of 4 credit offer can be added to your page</p>
+    <% end %>
+    <% if @owner.owner_offers.any? %>
+      <% @owner.owner_offers.each do |owneroffer| %>
+        <div class="amount-discount">
+          <div>
+            <p> Amount </p>
+            <h3> <%= humanized_money_with_symbol(owneroffer.offer_amount) %>  </h3>
+          </div>
+          <div>
+            <p> Discount </p>
+            <h3> <%= owneroffer.discount %>% </h3>
+          </div>
+        </div>
+      <% end %>
+    <% else %>
+      <br>
+      <p> No offers yet </p>
+    <%  end %>
+      <div class="btn-layer">
+        <%= link_to "REGISTER", root_path, class: "button-primary" %>
+      </div>
+  </div>
+</div>

@@ -1,0 +1,72 @@
+<div class="bus-container">
+  <div class="main-item">
+      <%= cl_image_tag owner.photo.key, quality: :auto, crop: :scale, class:"cl-img" %>
+  </div>
+
+  <div class="bus-content-container">
+    <div class="bus-infos">
+      <h1><%= owner.name %> <small>
+        <%= link_to "http://www.instagram.com/#{owner.instagram}", target: "_blank", rel: "nofollow", class: "link-to-txt" do %>
+          <i class="fab fa-instagram"></i>
+        <%end%>
+      </small> </h1>
+      <p><%= owner.description %></p>
+      <h1>Location</h1>
+      <p> <%= owner.address %></p>
+    </div>
+
+    <% if user_signed_in? %>
+      <% if current_user.owner %>
+        <div class="bus-infos mt-2">
+          <h1>Offers</h1>
+          <p>These are the current available offers</p>
+        </div>
+      <% else %>
+        <div class="bus-infos mt-2">
+          <h1>Offers</h1>
+          <p>Click an offer to add it to your cart </p>
+        </div>
+      <% end %>
+    <% else %>
+      <div class="bus-infos mt-2">
+        <h1>Offers</h1>
+        <p>Create an account before adding to your cart</p>
+      </div>
+    <% end %>
+
+    <div class="bus-infos bus-offers mt-2">
+
+        <% owner.owner_offers.each do |owner_offer| %>
+          <%= link_to add_offer_to_bag_path(owner, owner_offer.id), method: :post  do %>
+            <button class="button-secondary-sm offers">
+              <span class="strike"><%= humanized_money_with_symbol(owner_offer.offer_amount)%>$</span>
+               <%=humanized_money_with_symbol(owner_offer.price_cents) %>
+               <span style="color:#739C88"> (<%= owner_offer.discount%>%)</span>
+             </button>
+          <% end %>
+        <%end%>
+    </div>
+
+<% if user_signed_in? %>
+  <% if !current_user.owner %>
+          <div class="offer-action  button-primary mt-1">
+            <%= link_to "VIEW CART", show_cart_path , class: "link-to-white"%>
+          </div>
+          <div class="offer-action  button-transparent mt-1">
+            <%= link_to "Back to Shops", owners_path , class: "link-to-txt"%>
+          </div>
+  <% else %>
+          <div class="offer-action  button-transparent mt-1">
+            <%= link_to "Back to Shops", owners_path , class: "link-to-txt"%>
+          </div>
+  <% end %>
+<%else%>
+          <div class="offer-action  button-transparent mt-1">
+            <%= link_to "Back to Shops", owners_path , class: "link-to-txt"%>
+          </div>
+<%end%>
+
+  </div>
+</div>
+
+    <%= render 'shared/flashes' %>

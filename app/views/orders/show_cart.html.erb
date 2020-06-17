@@ -1,0 +1,194 @@
+
+<%if !@order %>
+<div class="shop-bag-container">
+  <div class="shop-item-container">
+    <div class="shop-ttl">
+      <p>SHOPPING BAG ITEMS</p>
+    </div>
+    <div class="shop-list-container">
+        <div class="item-pic"></div>
+        <div class="item-descrption">
+         <span class="empty-msg"><p>YOUR SHOPPING BAG IS EMPTY!</p></span>
+        </div>
+        <div class="item-action"></div>
+    </div>
+  </div>
+
+
+
+<!-- ************************************** RIGHT SIDE OF THE PAGE ************************************************* -->
+
+<div class="pay-bag-container">
+
+  <div class="pay-title">
+  <p>ORDER SUMMARY</p>
+  </div>
+  <div class="pay-item1">
+    Number of Items: 0
+  </div>
+  <div class="pay-item2">
+    Total Value: -
+  </div>
+
+<!-- **************************** CHECK IF TOTAL AMOUNT IS MORE THAN ZERO ******************************* -->
+    <div class="pay-btn">
+      <button id="pay" class="button-primary-lrg">NO ITEM FOR CHECKOUT</button>
+    </div>
+
+    <div class="button-transparent pay-item3">
+      <%= link_to "Back to Shops", businesses_path , class: "link-to-txt"%>
+    </div>
+
+
+    <div class="pay-terms">
+      <p>
+        Our returns are free and easy. If something isn’t quite right, you have 100 days to send it back to us. Read more in our return and refund policy
+      </p>
+      <p style="color: #94B0B9">
+        FREE SHIPPING AND FREE RETURNS ON ALL ORDERS
+      </p>
+      <p style="color: #94B0B9">
+        Because of the current situation, we have extended our returns and refunds policy to 100 days.
+      </p>
+      <p>
+        Please note, order processing may take longer than usual right now. We’re working as fast as we can to get all orders ready, and we will let you know by email as soon as yours is on its way. Thank you for your patience during this difficult time, and - as always - for shopping with COS.
+        In accordance with our Privacy Notice, if you are signed in to your COS account, we will share personal data from your account with Klarna for order checkout and payment purposes.
+      </p>
+    </div>
+  </div>
+</div>
+<!-- Handle shopping bag -->
+<% else %>
+<% order_items = @order.order_items.sort_by { |k| k["id"] }%>
+
+<div class="shop-bag-container">
+  <div class="shop-item-container">
+    <div class="shop-ttl">
+      <p>SHOPPING BAG ITEMS</p>
+    </div>
+          <% order_items.each do |order_item|%>
+    <div class="shop-list-container">
+        <div class="item-pic">
+            <%= cl_image_tag order_item.owner_offer.owner.photo.key, quality: :auto, height: 150, width: 100, crop: :fill, class:"cl-img" %>
+        </div>
+        <div class="item-descrption">
+         <p><strong style="color: #739C88; font-weight: bold"> <%=  order_item.owner_offer.owner.name %></strong>
+          <br>
+
+          Original credit amount: <span class="strike"><%= humanized_money_with_symbol(order_item.owner_offer.offer_amount) %></span>
+          , but you pay: <%= humanized_money_with_symbol(order_item.owner_offer.price_cents) %>
+          <br>
+                  Quantity
+            <%= link_to remove_from_bag_path(order_item.owner_offer.owner_id,order_item.owner_offer.id), method: :post, remote:true do %>
+              <img src="<%= asset_path('minus.svg') %>" alt="">
+            <% end %>
+            <%= order_item.quantity %>
+            <%= link_to increase_offer_to_bag_path(order_item.owner_offer.owner_id,order_item.owner_offer.id), method: :post, remote:true do %>
+              <img src="<%= asset_path('plus.svg') %>" alt="">
+            <% end %>
+            </p>
+        </div>
+        <div class="item-action">
+          <p>
+            <%= link_to  order_order_item_path(@order, order_item), method: :delete  do %>
+              <img src="<%= asset_path('cross.svg') %>" alt="">
+            <% end %>
+          </p>
+
+        </div>
+
+    </div>
+          <% end %>
+  </div>
+
+
+
+<!-- ************************************** RIGHT SIDE OF THE PAGE ************************************************* -->
+  <% quantity = 0 %>
+  <% order_items = @order.order_items %>
+    <%order_items.each do |order_item|%>
+      <% quantity = quantity + order_item.quantity.to_i %>
+  <%end%>
+
+<div class="pay-bag-container">
+
+  <div class="pay-title">
+  <p>ORDER SUMMARY</p>
+  </div>
+  <div class="pay-item1">
+    Number of Items: <%= quantity %>
+  </div>
+  <div class="pay-item2">
+    Total Value: <%=  humanized_money_with_symbol(@order.total_amount_cents.to_f ) %>
+  </div>
+    <% if !@order.gift %>
+      <%= simple_form_for(@order) do |order| %>
+        <div class="gift-check mt-2" id="gift-item">
+          <%= order.check_box :gift, class: "checkbox-g" %> Send as a gift!
+        </div>
+        <div class="gift-textbox" id="gift-div" style="display: none">
+          <%= order.input_field :gift_email, placeholder: 'email address', class: "txtfld-ghost"  %> <br>
+          <%= order.input_field :gift_message, placeholder: 'type your message..', class: "txtfarea-ghost"  %>
+          <%= order.submit "send as a gift", class: "button-primary-gift " %>
+        </div>
+
+      <% end %>
+    <% else %>
+      <div class="gift-check green mt-2" >
+        Your order will be sent as a gift to: <%= @order.gift_email %>
+
+      </div>
+    <% end %>
+<!-- **************************** CHECK IF TOTAL AMOUNT IS MORE THAN ZERO ******************************* -->
+    <div class="pay-btn">
+      <button id="pay" class="button-primary-lrg">PROCEED TO CHECKOUT</button>
+    </div>
+              <script src="https://js.stripe.com/v3/"></script>
+                <script>
+                  var paymentButton = document.getElementById('pay');
+                  paymentButton.addEventListener('click', () => {
+                    var stripe = Stripe('<%= ENV['STRIPE_PUBLISHABLE_KEY'] %>');
+                    stripe.redirectToCheckout({
+                      sessionId: '<%= @order.checkout_session_id %>'
+                    });
+                  });
+                </script>
+    <div class="button-transparent pay-item3">
+      <%= link_to "Back to Shops", businesses_path , class: "link-to-txt"%>
+    </div>
+
+
+    <div class="pay-terms">
+      <p>
+        Our returns are free and easy. If something isn’t quite right, you have 100 days to send it back to us. Read more in our return and refund policy
+      </p>
+      <p style="color: #94B0B9">
+        FREE SHIPPING AND FREE RETURNS ON ALL ORDERS
+      </p>
+      <p style="color: #94B0B9">
+        Because of the current situation, we have extended our returns and refunds policy to 100 days.
+      </p>
+      <p>
+        Please note, order processing may take longer than usual right now. We’re working as fast as we can to get all orders ready, and we will let you know by email as soon as yours is on its way. Thank you for your patience during this difficult time, and - as always - for shopping with COS.
+        In accordance with our Privacy Notice, if you are signed in to your COS account, we will share personal data from your account with Klarna for order checkout and payment purposes.
+      </p>
+    </div>
+  </div>
+</div>
+
+<%end%>
+
+    <%= render 'shared/flashes' %>
+
+                <script>
+var gift = document.getElementById('order_gift');
+gift.addEventListener( 'change', function() {
+  var x = document.getElementById("gift-div");
+  if (x.style.display === "none") {
+    x.style.display = "block";
+  } else {
+    x.style.display = "none";
+  }
+});
+
+                </script>

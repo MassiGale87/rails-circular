@@ -1,0 +1,102 @@
+html {
+  scroll-behavior: smooth;
+}
+.b-main-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.banner {
+  background-size: cover;
+  background-position: center;
+  padding: 150px 0;
+  height: 90vh;
+  width: 100%;
+  order: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.banner .scroll1 {
+    position: absolute;
+    left: 48%;
+    top: 83%;
+
+img {
+  width: 60px;
+  height: 60px;
+}
+}
+
+.banner h2 {
+  margin: 0;
+  color: white;
+  font-weight: lighter;
+  line-height: 44px !important;
+  text-align: center;
+}
+
+
+.banner-container {
+  height: 300px;
+  width: 900px;
+  position: absolute;
+  right: 200px;
+  top: 240px;
+}
+
+
+.banner-container a {
+  position: absolute;
+  top: 110px;
+}
+
+
+.banner-container a:hover {
+  text-decoration: none;
+}
+
+
+.banner-2 {
+  order: 2;
+  display: flex;
+  flex-direction: column;
+}
+
+
+
+.sec2{
+  height: 100vh;
+  width: 100%;
+  background-color: white;
+  position: relative;
+  border-bottom: 0.7px solid #333333;
+  h2{
+    color: #333333;
+    position: absolute;
+    font-size: 32px;
+    top: 30%;
+    left: 22%;
+  }
+
+}
+
+.sec2  .action-sec2{
+    position: absolute;
+    left: 72%;
+    top: 53%;
+    font-size: 16px;
+    text-decoration: underline;
+  }
+
+.sec2 .scroll2 {
+    position: absolute;
+    left: 48%;
+    top: 75%;
+
+img {
+  width: 60px;
+  height: 60px;
+}
+}

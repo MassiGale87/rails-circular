@@ -1,0 +1,14 @@
+.alert {
+  position: fixed;
+  bottom: 16px;
+  right: 16px;
+  z-index: 1000;
+  height: 50px;
+  width: 350px;
+  background-color: white;
+  border: 0.7px solid black;
+  border-radius: 6px;
+  color: black;
+  font-family: "Karla";
+  font-size: 14px;
+}

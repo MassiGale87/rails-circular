@@ -1,0 +1,51 @@
+@import url('https://fonts.googleapis.com/css2?family=Karla:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
+// Import your components CSS files here.
+@import "alert";
+@import "avatar";
+@import "navbar";
+@import "button";
+@import "card";
+@import "cardGrid";
+@import "banner";
+@import "showBusGrid";
+@import "form";
+@import "textfield";
+@import "shopBagGrid";
+@import "ProfileOrderGrid";
+
+
+
+body {
+font-family: Karla;
+font-style: normal;
+font-weight: lighter;
+font-size: 14px;
+line-height: 16px;
+color: #000000;
+background-color: white;
+}
+
+p {
+  font-family: Karla;
+  font-style: normal;
+  font-weight: lighter;
+  font-size: 14px;
+}
+
+
+
+h2 {
+  font-family: Karla;
+  font-style: normal;
+  font-weight: lighter;
+  font-size: 28px;
+}
+
+
+h2 {
+  font-family: Karla;
+  font-style: normal;
+  font-weight: lighter;
+  font-size: 36px;
+}

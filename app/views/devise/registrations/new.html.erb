@@ -1,0 +1,43 @@
+<div class="form-container-up">
+  <h2>Sign up</h2>
+    <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+    <%= f.error_notification %>
+    <div class="form-inputs">
+
+        <div class="row">
+        <div class= "col-8 col-lg-6">
+      <%= f.input :first_name,
+                  required: true,
+                  autofocus: true,
+                  input_html: { autocomplete: "first_name", class: "txtfield" }%>
+      <%= f.input :last_name,
+                  required: true,
+                  input_html: { autocomplete: "last_name", class: "txtfield" }%>
+      <%= f.input :email,
+                  required: true,
+                  input_html: { autocomplete: "email", class: "txtfield" }%>
+      Check the box below if you want to register a business.
+      <%= f.input :owner, label: "I am the owner" %>
+        </div>
+        <div class= "col-8 col-lg-6">
+      <%= f.input :password,
+                  required: true,
+                  # hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
+                  input_html: { autocomplete: "new-password", class: "txtfield" } %>
+      <%= f.input :password_confirmation,
+                  required: true,
+                  input_html: { autocomplete: "new-password", class: "txtfield" } %>
+                <div class="form-actions">
+                  <%= f.button :submit, "Sign up", class: "button-primary mt-4"; %>
+                </div>
+                <div class="mt-3">
+                <%= render "devise/shared/links" %>
+                </div>
+         </div>
+         </div>
+
+    </div>
+
+  <% end %>
+
+</div>

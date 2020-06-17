@@ -1,0 +1,58 @@
+<div class="navbar-container">
+  <div class="navbar-spc"></div>
+  <div class="navbar-box-str">
+    <%= link_to owners_path, class: "link-to-white-solid" do %>
+    Stores
+    <% end %>
+  </div>
+  <div class="navbar-box-abt">
+    <%= link_to about_path, class: "link-to-white-solid" do %>
+      About Us
+    <% end %>
+  </div>
+  <div class="nav-logo">
+    <p><a href="/">CIRCULAR</a></p>
+  </div>
+  <div class="navbar-box-srch">
+    <%= form_tag owners_path, method: :get do %>
+    <%= text_field_tag :query, params[:query], class: "txtfld-ghost-sm", placeholder: "Search" %>
+    <% end %>
+  </div>
+  <%if user_signed_in? %>
+  <div class="navbar-box-lg"><%= link_to "logout", destroy_user_session_path, method: :delete, class: "link-to-txt" %>
+  </div>
+  <%else%>
+  <div class="navbar-box-lg dropdown" id="log-action"><img src="<%= asset_path('arrow.svg')%>" alt=""
+      class="dropdown-toggle" data-toggle="dropdown">
+    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+      <a class="dropdown-item look-style" href="/users/sign_in">Sign in</a>
+      <a class="dropdown-item look-style" href="/users/sign_up">Register</a>
+    </div>
+  </div>
+  <%end%>
+  <%if user_signed_in?%>
+  <div class="navbar-box-bag">
+    <%= link_to show_cart_path, class: "link-to-txt" do %>
+    <img src="<%= asset_path('bag.svg')%>" alt="">
+    <%= current_user.orders.last.order_items.count if current_user.orders && !current_user.orders.last.nil? && !current_user.orders.last.paid %>
+    <% end %>
+  </div>
+  <div class="navbar-box-profile">
+    <%= link_to  edit_user_registration_path, class: "link-to-txt" do %>
+    <img src="<%= asset_path('profile.svg')%>" alt="">
+    <% end %>
+  </div>
+  <%else%>
+  <div class="navbar-box-bag">
+    <%= link_to  show_cart_path, class: "link-to-txt" do %>
+    <img src="<%= asset_path('bag.svg')%>" alt="" id="profile">
+    <% end %>
+  </div>
+  <div class="navbar-box-profile">
+    <%= link_to  "#", class: "link-to-txt" do %>
+    <img src="<%= asset_path('profile.svg')%>" alt="">
+    <% end %>
+    <%flash[:alert] = "You are not logged in"%>
+  </div>
+  <%end%>
+</div>

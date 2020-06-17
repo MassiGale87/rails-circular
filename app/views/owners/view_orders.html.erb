@@ -1,0 +1,18 @@
+<div class= "mx-3">
+  <div class = "row">
+    <div class="col-12 col-md-6 col-lg-6 mt-5">
+      <h4 style="margin-left: 18px;">My Orders:</h4>
+        <% @order.each do |ord| %>
+          <div class="notification-content">
+            <p>Order Created at: <%=  ord.order_date %> </p>
+            <p>Order Expire at: <%=  ord.exp_date %> </p>
+            <p>Confirmation num: <%=  ord.confirmation_no %> </p>
+            <p>Payment num: <%=  ord.payment_no %> </p>
+            <p>Paid: <%=  ord.paid %> </p>
+            <p>Money received: <%=  ord.owner_paid %> </p>
+            </div>
+          </div>
+        <%end%>
+    </div>
+  </div>
+</div>

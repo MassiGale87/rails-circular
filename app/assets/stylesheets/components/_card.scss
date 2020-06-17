@@ -1,0 +1,169 @@
+
+.card {
+  overflow: hidden;
+  background: white;
+  width: 360px;
+  height: 269px;
+  border: 0px;
+}
+
+.card .cl-img {
+  height: 215px;
+  width: 100%;
+  object-fit: cover;
+}
+
+.card > img {
+  height: 215px;
+  width: 100%;
+  object-fit: cover;
+}
+
+.card h2 {
+  font-family: Karla;
+  font-size: 16px;
+  font-weight: bold;
+  margin: 0;
+}
+
+.card p {
+  font-family: Karla;
+  font-size: 12px;
+  opacity: .7;
+  margin: 0;
+}
+
+
+.card .card-infos {
+  padding: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  position: relative;
+
+}
+
+   .green {
+    color: #557867 !important;
+    font-weight: bold;
+  }
+
+.card-infos .card-empl {
+  position: absolute;
+  right: 8px;
+}
+
+
+.card-infos .discount-bordered{
+
+
+
+  font-family: Karla;
+  position: absolute;
+  right: 15px;
+  top: -203px;
+
+  background: white;
+
+  width: 50px;
+  height: 50px;
+  border-radius: 4px;
+
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+ .discount-bordered .discount-bordered-inside{
+  font-family: Karla;
+
+  font-size: 20px !important;
+  font-weight: bold;
+
+  background: #739c88;
+  // border: 2px solid #00C37D;
+  color: white;
+  width: 50px;
+  height: 50px;
+  border-radius: 4px;
+  text-align: center;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+
+  img {
+    width: 30px;
+    height: 30px;
+  }
+
+    .cl-img {
+    width: 30px;
+    height: 30px;
+  }
+}
+
+.link-to-txt {
+
+  font-family: Karla;
+  color: #333333 !important;
+  font-weight: lighter;
+}
+.link-to-txt:hover {
+
+  font-family: Karla;
+  color: #333333 !important;
+  font-weight: lighter;
+  opacity: 0.8;
+  text-decoration: none;
+}
+
+.link-to {
+  text-decoration: none  !important;
+  font-family: Karla;
+  color: #333333 !important;
+  font-weight: lighter;
+}
+
+.link-to-white {
+  text-decoration: none  !important;
+  font-family: Karla;
+  color: white !important;
+  font-weight: lighter;
+}
+
+.link-to:hover{
+  text-decoration: none  !important;
+  font-family: Karla;
+  color: white !important;
+  font-weight: lighter;
+}
+
+.link-to-white:hover{
+  text-decoration: none  !important;
+  font-family: Karla;
+  color: #333333  !important;
+  font-weight: lighter;
+}
+
+.link-to-white-solid {
+  text-decoration: none  !important;
+  font-family: Karla;
+  color: white !important;
+  font-weight: lighter;
+}
+
+.link-to-white-solid:hover{
+  text-decoration: none  !important;
+  opacity: 0.8;
+}
+
+.link-to-blue {
+  text-decoration: none  !important;
+  font-family: Karla;
+  color: #94B0B9 !important;
+  font-weight: lighter;
+}
+
+.link-to-blue:hover{
+  opacity: 0.8;
+}

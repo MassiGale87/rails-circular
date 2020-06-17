@@ -1,0 +1,7 @@
+<%= simple_form_for([@owner, @owner_offer], remote: true, class: 'form-inline') do |f| %>
+   <%= f.label :offer_amount %>
+   <%= f.text_field :offer_amount %>
+   <%= f.label :discount %>
+   <%= f.text_field :discount %>
+   <%= f.submit %>
+ <% end %>

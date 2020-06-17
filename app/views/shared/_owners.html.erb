@@ -1,0 +1,38 @@
+  <div class="main-container-side">
+  <div class="cat-content">
+    <% Category.all.each do |category|%>
+
+    <%= link_to owners_path(category: category.category_name), class: "link-to", method: :get do %>
+    <p class="cat-box-sm"><%= category.category_name %></p>
+    <%end%>
+
+    <% end %>
+  </div>
+  <div class="card-container-side">
+    <% owners.each do |owner| %>
+    <%= link_to owner_path(owner), class: "link-to-txt" do %>
+    <div class="card-container-item">
+      <div class="card">
+        <%= cl_image_tag owner.photo.key, crop: :scale, quality: :auto, class:"cl-img" %>
+        <div class="card-infos">
+          <div>
+            <h2><%= owner.name %></h2>
+            <p class="green"><%= owner.category.category_name %></p>
+          </div>
+          <% if owner.owner_offers[0] %>
+          <div class="discount-bordered">
+            <div class="discount-bordered-inside"> <%= owner.owner_offers[0].discount %>%</div>
+          </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <% end %>
+    <% end %>
+  </div>
+  <div class="centerd-btn-layer">
+    <%= link_to owners_path, class: "link-to" do %>
+    <div class="button-secondary">View All</div>
+    <% end %>
+  </div>
+</div>

@@ -1,0 +1,31 @@
+<%if !owners[0].nil? %>
+<div class="card-container-noside">
+  <div class="heading" id="3"><%= text %></div>
+  <% owners.each do |owner| %>
+  <%= link_to owner_path(owner), class: "link-to-txt" do %>
+      <div class="card-container-item">
+        <div class="card">
+          <%= cl_image_tag owner.photo.key, crop: :scale, quality: :auto, class:"cl-img" %>
+          <div class="card-infos">
+            <div>
+              <h2><%= owner.name %></h2>
+              <p class="green"><%= owner.category.category_name %></p>
+            </div>
+            <div class="discount-bordered">
+              <% if owner.owner_offers[0] %>
+                <div class="discount-bordered-inside"> <%= owner.owner_offers[0].discount %>%</div>
+              <% end %>
+              </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
+</div>
+
+<div class="centerd-btn-layer mt-4 mb-4">
+  <%= link_to owners_path, class: "link-to" do %>
+  <div class="button-primary">View All</div>
+  <% end %>
+</div>
+<%end%>

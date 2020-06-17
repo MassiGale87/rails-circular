@@ -1,2 +1,29 @@
-<h1>Owners#new</h1>
-<p>Find me in app/views/owners/new.html.erb</p>
+<div class="container" style="margin-top: 100px">
+  <h2 style=" margin-left: 30px">Create a new Rent</h2>
+  <div class="row">
+    <div class="col-12 col-md-6 col-lg-6 px-lg-5">
+      <div class="form-inputs">
+        <%= simple_form_for @owner do |f| %>
+        <%= f.error_notification %>
+        <%= f.input :name, as: :string, placeholder: 'Name of Your Rent', error: 'Name is mandatory, please specify one', required: true, input_html: {class: "txtfield"} %>
+        <%= f.input :address, required: true, as: :search, input_html: {id: "b_address", class: "txtfield"}, placeholder: 'Address of Your Rent' %>
+        <%= f.input :category_id, collection: Category.all, label_method:
+        lambda {
+        |category| "#{category.category_name}"
+        }, required: true, input_html: {class: "txtfield"} %>
+        <%= f.input :description, as: :text, placeholder: 'Write a catchy description here...', input_html: { maxlength: 200, class: "txtfield" }, hint: 'Max 200 characters.', required: true  %>
+      </div>
+    </div>
+    <div class="col-12 col-md-6 col-lg-6 px-lg-5">
+      <%= f.input :instagram, as: :string, placeholder: 'Instagram Profile Link', required: true, input_html: {class: "txtfield"}  %>
+      <%= f.input :facebook, as: :string, placeholder: 'Your Facebook url', required: true, input_html: {class: "txtfield"}  %>
+      <div class="d-flex mt-4">
+        <i class="far fa-image" style="padding-right: 8px"></i><%= f.input :photo, input_html: { class: 'd-none' }, label_html: { class: 'upload-photo'}, label: 'Upload a photo' %>
+      </div>
+      <div class="form-actions">
+      <%= f.button :submit, class: "button-primary" %>
+      </div>
+      <% end %>
+    </div>
+  </div>
+</div>

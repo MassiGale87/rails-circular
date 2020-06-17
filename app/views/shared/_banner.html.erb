@@ -1,0 +1,76 @@
+<div class="b-main-container">
+  <div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.3),rgba(0,0,0,0.2)), url(<%= asset_path('banner.jpg') %>);">
+    <div class="">
+      <h2 style="text-shadow: 1px 1px 6px black; text-align: left">Make money reting your stuff. Now. <br>Start</h2>
+      <br>
+      <br>
+      <a class="button-blue" href="/businesses">Discover Circular Stuff</a>
+    </div>
+      <div class="scroll1">
+        <img src="<%= asset_path('scroll.svg')%>" alt="" onclick="topFunction1()" id="myArrow1">
+      </div>
+
+  </div>
+
+
+  <div class="banner-2">
+    <div class="sec2">
+      <h2>
+
+          Hit two birds with one stone!! <br>
+          Support your community and make/save money.
+          <br><br>
+          Take a look.
+
+
+      </h2>
+      <div class="action-sec2 mt-1">
+            <%= link_to "Sign Up Here!",  new_user_registration_path , class: "link-to-txt"%>
+       </div>
+      <div class="scroll2">
+        <img src="<%= asset_path('scroll.svg')%>" alt="" onclick="topFunction2()" id="myArrow2">
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script type="text/javascript">
+
+
+myScroll1 = document.getElementById("myArrow1");
+window.onscroll = function() {scrollFunction1()};
+
+function scrollFunction1() {
+  if (document.body.scrollTop > 10 || document.documentElement.scrollTop > 10) {
+    myScroll1.style.display = "block";
+  } else {
+    myScroll1.style.display = "none";
+  }
+}
+function topFunction1() {
+  document.querySelector('.sec2').scrollIntoView({
+  behavior: 'smooth'
+});
+}
+
+// ************************************************ SECOND SCROLL ************************************************//
+
+myScroll2 = document.getElementById("myArrow2");
+window.onscroll = function() {scrollFunction2()};
+
+function scrollFunction2() {
+  if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+    myScroll2.style.display = "block";
+  } else {
+    myScroll2.style.display = "none";
+  }
+}
+function topFunction2() {
+document.querySelector('.card-container-noside').scrollIntoView({
+  behavior: 'smooth'
+});
+  // document.body.scrollTop = 1600; // For Safari
+  // document.documentElement.scrollTop = 1600;
+}
+</script>

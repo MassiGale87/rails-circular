@@ -1,0 +1,33 @@
+
+<div class="navbar">
+
+  <div class="action">
+
+    <div class="shop action-item">
+      Shop
+    </div>
+
+    <div class="cart action-item">
+      Cart
+    </div>
+  </div>
+
+  <div class="logo">
+    <%= link_to root_path do %>
+      <%= image_tag ('tuche2.jpg'), class: "logo_two" %>
+    <% end %>
+  </div>
+
+
+  <div class="action-two">
+
+    <%= form_tag owners_path, method: :get, class: "bg-light" do %>
+         <%= text_field_tag :query, params[:query], class: "form-control mr-sm-2 border-0", placeholder: "enter a keyword" %>
+    <% end %>
+
+    <div class="login action-item-two">
+      <%= link_to "Login", new_user_registration_path %>
+    </div>
+  </div>
+
+</div>
