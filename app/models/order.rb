@@ -42,7 +42,7 @@ class Order < ApplicationRecord
   #   # raise
   #   @order_items.each do |order_item|
   #     owner_offer = OwnerOffer.find(order_item.owner_offer_id)
-  #     # This needs to be total of discounted amount:
+  #     # This needs to be total of dicscounted amount:
   #     updated_total_amount_cents += owner_offer.price_cents * order_item.quantity
   #   end
   #   first_name = User.find(self.user_id).first_name
